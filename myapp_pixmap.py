@@ -1,7 +1,8 @@
 import sys
 
-from PySide6.QtWidgets import QApplication, QWidget, QMainWindow, QPushButton
+from PySide6.QtWidgets import QApplication, QWidget, QMainWindow, QPushButton, QLabel
 from PySide6.QtCore import QSize, Qt
+from PySide6.QtGui import QPixmap
 
 
 class MainWindow(QMainWindow):
@@ -9,13 +10,11 @@ class MainWindow(QMainWindow):
         super().__init__()
         self.setWindowTitle('My First App')
 
-        button = QPushButton('Press Me')
-        button.setCheckable(True)
-        button.clicked.connect(self.the_button_was_clicked)
-        button.clicked.connect(self.the_button_was_toggled)
+        widget = QLabel('Hello')
+        widget.setPixmap(QPixmap('pyqt_logo.jpg'))
+        widget.setScaledContents(True) # позволяет растягивать окно с изображением
 
-        self.setFixedSize(QSize(400, 300))
-        self.setCentralWidget(button)
+        self.setCentralWidget(widget)
 
     def the_button_was_clicked(self):
         print('Clicked')

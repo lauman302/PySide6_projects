@@ -1,6 +1,6 @@
 import sys
 
-from PySide6.QtWidgets import QApplication, QWidget, QMainWindow, QPushButton
+from PySide6.QtWidgets import QApplication, QWidget, QMainWindow, QPushButton, QLabel
 from PySide6.QtCore import QSize, Qt
 
 
@@ -9,13 +9,14 @@ class MainWindow(QMainWindow):
         super().__init__()
         self.setWindowTitle('My First App')
 
-        button = QPushButton('Press Me')
-        button.setCheckable(True)
-        button.clicked.connect(self.the_button_was_clicked)
-        button.clicked.connect(self.the_button_was_toggled)
+        widget = QLabel('Hello')
+        font = widget.font()
+        font.setPointSize(40)
+        widget.setFont(font)
+        widget.setAlignment(Qt.AlignmentFlag.AlignHCenter | Qt.AlignmentFlag.AlignVCenter)
 
         self.setFixedSize(QSize(400, 300))
-        self.setCentralWidget(button)
+        self.setCentralWidget(widget)
 
     def the_button_was_clicked(self):
         print('Clicked')
